@@ -139,6 +139,7 @@ export default function Timer() {
 		setClockHour(0);
 		setClockMinutes(0);
 		setClockSeconds(0);
+		return;
 	};
 
 	// Styles.
