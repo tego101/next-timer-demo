@@ -5,3 +5,5 @@
 **Twitter/X** → [@tegocodes](https://x.com/tegodotdev)
 
 **Portfolio** → [tego.dev](https://tego.dev)
+
+![banner](/next-timer-demo.gif)
