@@ -6,4 +6,6 @@
 
 **Portfolio** → [tego.dev](https://tego.dev)
 
+![banner](/next-timer-demo-splash.png)
+
 ![banner](/next-timer-demo.gif)
