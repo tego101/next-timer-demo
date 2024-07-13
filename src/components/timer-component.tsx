@@ -62,10 +62,14 @@ export const StatusLED = ({
 		<div>
 			{
 				{
-					[timerStatus.COUNTING]: <div style={greenLEDStyle} role='status' />,
-					[timerStatus.PAUSED]: <div style={redLEDStyle} role='status' />,
+					[timerStatus.COUNTING]: (
+						<div style={greenLEDStyle} role="status" />
+					),
+					[timerStatus.PAUSED]: (
+						<div style={redLEDStyle} role="status" />
+					),
 					[timerStatus.NOT_COUNTING]: (
-						<div style={grayLEDStyle} role='status' />
+						<div style={grayLEDStyle} role="status" />
 					),
 				}[currentStatus]
 			}
@@ -76,7 +80,7 @@ export const StatusLED = ({
 export default function Timer() {
 	const intervalRef = useRef<NodeJS.Timeout | Timer | null>(null);
 	const [status, setTimerStatus] = useState<timerStatus>(
-		timerStatus.NOT_COUNTING
+		timerStatus.NOT_COUNTING,
 	);
 
 	// Booleans.
@@ -95,7 +99,9 @@ export default function Timer() {
 				setClockMinutes((prevMinutes) => {
 					const newMinutes = Math.floor(prevMinutes + 1);
 					if (newMinutes === 60) {
-						setClockHour((prevHour) => Math.floor((prevHour + 1) % 24));
+						setClockHour((prevHour) =>
+							Math.floor((prevHour + 1) % 24),
+						);
 						return 0;
 					}
 					return newMinutes;
@@ -116,7 +122,10 @@ export default function Timer() {
 			return;
 		}
 
-		if (status === timerStatus.PAUSED || status === timerStatus.NOT_COUNTING) {
+		if (
+			status === timerStatus.PAUSED ||
+			status === timerStatus.NOT_COUNTING
+		) {
 			setTimerStatus(timerStatus.COUNTING);
 			setIsCounting(true);
 			intervalRef.current = setInterval(countUp, 1000);
@@ -187,29 +196,29 @@ export default function Timer() {
 		<div style={clockContainerStyle}>
 			<StatusLED currentStatus={status} />
 			<div style={clockStyle}>
-				{`
-          ${formatTime(clockHour)}hr ${formatTime(
-					clockMinutes
-				)}min ${formatTime(clockSeconds)}sec
-        `}
+				{`${formatTime(clockHour)}hr ${formatTime(clockMinutes)}min ${formatTime(clockSeconds)}sec`}
 			</div>
 			{setTimerTime ? (
 				<div style={setClockValuesStyle}>
 					<input
-						type='number'
+						type="number"
 						onChange={(e) => setClockHour(Number(e.target.value))}
 						style={inputStyle}
 					/>
 					hr
 					<input
-						type='number'
-						onChange={(e) => setClockMinutes(Number(e.target.value))}
+						type="number"
+						onChange={(e) =>
+							setClockMinutes(Number(e.target.value))
+						}
 						style={inputStyle}
 					/>
 					mins
 					<input
-						type='number'
-						onChange={(e) => setClockSeconds(Number(e.target.value))}
+						type="number"
+						onChange={(e) =>
+							setClockSeconds(Number(e.target.value))
+						}
 						style={inputStyle}
 					/>
 					secs
